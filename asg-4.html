@@ -45,7 +45,32 @@
             restaurants_rating.push(average_rating[index]);
         });
         console.log("the Average rating for all the restaurants:",restaurants_rating);
+        
+//ALTERNATE METHOD: By creating object of restaurant name with their rating as array in QUESTION A--> 
+        let obj={};
+        ratingData.forEach(i => {
+            let name=i.restaurant;
+            let rate=i.rating;
+            if(!(name in obj)){
+                obj[name]=[];
+            };
+            obj[name].push(rate);
+        });
+        console.log(obj);
 
+        let val=[];
+        for(let keys in obj){
+            let arr = obj[keys];
+            let sum=0;
+            let avg=0;
+            for(let i=0;i<arr.length;i++){
+                sum+=arr[i];
+            }
+            avg=sum/(arr.length);
+            val.push({"restaurant":keys,"average rating":avg});
+        }
+        console.log("the Average rating for all the restaurants:",val);
+     
 // b. List of all restaurants with average rating greater than or equal to 4.
 
         let rating_above_4 = restaurants_rating.filter(value => value["average rating"]>=4);
